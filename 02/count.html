@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퀴즈2. 숫자 카운팅</title>
+</head>
+<style>
+  *{margin: 0;padding: 0;}
+  .wrapper{background:#fefe;width: 100vw;height: 100vh;position: relative;}
+  .container{display: flex;text-align: center;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+  .num_box{padding: 30px;}
+  .tit{font-size:24px;font-weight: bold;display: block;}
+  .num_animation{font-size: 25px;}
+</style>
+<body>
+
+  <div class="wrapper">
+    <div class="container">
+      <div class="num_box">
+        <span class="tit">문창훈 키</span>
+        <span class="num_animation" data-rate="150">0</span>
+      </div>
+      <div class="num_box">
+        <span class="tit">문창훈 몸무게</span>
+        <span class="num_animation" data-rate="200">0</span>
+      </div>
+      <div class="num_box">
+        <span class="tit">문창훈 전투력</span>
+        <span class="num_animation" data-rate="100">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let numAnimation = document.querySelectorAll('.num_animation');
+    // let targetNum = numAnimation.getAttribute('data-rate');
+   
+    function changeNum(idx){
+      let num = 0; //0에서 시작
+      let intervalTime = 10;
+      let targetNum = numAnimation[idx].getAttribute('data-rate');
+      if(targetNum > 500){
+        intervalTime = 5;
+      }
+      let timer = setInterval(function(){
+        ++num; //전치
+        numAnimation[idx].innerText = num; //반복해야할 일
+        if(num == targetNum){
+          clearInterval(timer);
+        }
+      
+      }, 10)
+  };
+  for(let i = 0; i<numAnimation.length; i++){
+    changeNum(i);
+  }
+
+
+
+  </script>
+</body>
+</html>
